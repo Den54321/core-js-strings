@@ -286,8 +286,8 @@ function orderAlphabetically( str) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring( str, substring ) {
+  return str.includes(substring);
 }
 
 /**
@@ -304,8 +304,13 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels( str ) {
+  let res = 0;
+  const vowels = 'aeiouyAEIOUY';
+  for(let i = 0 ; i < str.length; i++){
+    if (vowels.includes(str[i])) res++;
+  }
+  return res;
 }
 
 /**
@@ -321,8 +326,17 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome( str ) {
+  let reversStr = '';
+  let aversStr = '';
+  for(let i = 0 ; i < str.length; i++){
+    if(str[i] !== ' ' &&  str[i] !== '!'  &&  str[i] !== '?' &&  str[i] !== ',') {
+      reversStr = str[i] + reversStr;
+      aversStr += str[i];
+    }
+
+  }
+  return aversStr.toLowerCase() == reversStr.toLowerCase();
 }
 
 /**
@@ -337,8 +351,10 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord( sentence ) {
+  let arrStr = sentence.split(' ');
+
+  return arrStr.sort((a ,b) => b.length - a.length)[0];
 }
 
 /**
@@ -351,8 +367,21 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords( str ) {
+  function reverseString( str ) {
+    let res = '';
+    for(let i = str.length - 1; i >= 0; i--)
+    {
+      res += str[i];
+    }
+    return res;
+  }
+   let arrStr = str.split(' ');
+   let arrRes = [];
+   arrStr.forEach((item)=>{
+    arrRes.push(reverseString(item));
+   })
+   return arrRes.join(' ');
 }
 
 /**
@@ -366,9 +395,15 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
-}
+function invertCase( str ) {
+  let res = '';
+  for(let i = 0; i < str.length; i++){
+      if(str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) res += str[i].toLowerCase();
+      else if(str.charCodeAt(i) >= 97 && str.charCodeAt(i) <= 122) res += str[i].toUpperCase();
+      else res += str[i];
+    }
+  return res;
+  }
 
 /**
  * Returns the result of string template and given parameters firstName and lastName.
@@ -383,8 +418,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate( firstName, lastName ) {
+  return `Hello, ${firstName} ${lastName}!`
 }
 
 /**
@@ -397,8 +432,9 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const arrStr = value.split(' ');
+  return arrStr[arrStr.length - 2] + " " + arrStr[arrStr.length - 1].slice(0, arrStr[arrStr.length - 1].length - 1);
 }
 
 /**
@@ -412,8 +448,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag( str ) {
+  return str.slice(1, str.length - 1 )
 }
 
 /**
